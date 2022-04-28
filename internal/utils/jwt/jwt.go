@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var Secret = []byte("Megrez")
+var Secret = []byte("Dubhe")
 
 // TODO: 测试 token 过期时间
 var TokenExpireDuration = time.Hour * 24 * 7
@@ -21,7 +21,7 @@ func GenerateToken(id uint) (string, error) {
 	c := Claims{
 		ID: id,
 		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer:    "Megrez",
+			Issuer:    "Dubhe",
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(TokenExpireDuration)),
 		},
 	}

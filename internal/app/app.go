@@ -17,15 +17,40 @@ type Dubhe struct {
 	Logger *zap.Logger
 }
 
-func NewDubhe() *gin.Engine {
+func New() *Dubhe {
+	return &Dubhe{}
 }
 
-func (d *Dubhe) initHome() error {
-	megrezHome, err := dirUtils.GetOrCreateMegrezHome()
+// Run run blog application
+func (d *Dubhe) Run() error {
+	err := d.server.Run()
 	if err != nil {
 		return err
 	}
-	d.Home = megrezHome
+	return nil
+}
+
+func (d *Dubhe) Init() error {
+	for _, f := range []func() error{
+		d.initHome,
+		d.initLogger,
+		//d.initConfig,
+		//d.initDB,
+		d.initRouter,
+	} {
+		if err := f(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (d *Dubhe) initHome() error {
+	home, err := dirUtils.GetOrCreateDubheHome()
+	if err != nil {
+		return err
+	}
+	d.Home = home
 	return nil
 }
 

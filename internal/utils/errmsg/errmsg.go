@@ -5,8 +5,7 @@ import "github.com/gin-gonic/gin"
 const (
 	SUCCESS           = 0
 	ERROR             = -1
-	ErrorNotInstalled = 2
-	ErrorInvalidParam = 3
+	ErrorInvalidParam = 2
 
 	// code= 1000... 用户模块的错误
 	ErrorUsernameExist = 1001
@@ -29,7 +28,6 @@ var codeMsg = map[int]string{
 	SUCCESS:            "OK",
 	ERROR:              "服务端发生未知错误",
 	ErrorInvalidParam:  "请求参数错误",
-	ErrorNotInstalled:  "博客未安装,请先完成安装程序",
 	ErrorUsernameExist: "用户名已存在！",
 	ErrorPasswordWrong: "用户名或密码错误",
 	ErrorUserNotExist:  "用户不存在",
